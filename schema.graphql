@@ -1,0 +1,39 @@
+type Book {
+  id: ID!
+  title: String!
+  author: String!
+  library: Library
+}
+
+type Library {
+  id: ID!
+  name: String!
+  address: String!
+  books: [Book!]
+}
+
+type Query {
+  books: [Book!]!
+  book(id: ID!): Book
+  libraries: [Library!]!
+  library(id: ID!): Library
+}
+
+type AddBookMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  book: Book
+}
+
+type AddLibraryMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  library: Library
+}
+
+type Mutation {
+  addBook(title: String!, author: String!): AddBookMutationResponse
+  addLibrary(name: String!, address: String!): AddLibraryMutationResponse
+}
